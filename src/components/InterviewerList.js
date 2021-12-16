@@ -1,26 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "components/InterviewerList.scss";
 import InterviewerListItem from "./InterviewerListItem.js";
 
 export default function InterviewerList(props) {
-  console.log(props);
-  console.log("======" + props.interviewers)
-  const parsedInterviewers = props.interviewers.map(interviewer => { 
+  const parsedInterviewers = props.interviewers.map((interviewer) => {
     return (
-      <InterviewerListItem 
+      <InterviewerListItem
         key={interviewer.id}
-       // setInterviewer={props.setInterviewer}
         selected={interviewer.id === props.interviewer}
-        {...interviewer} 
+        {...interviewer}
         setInterviewer={() => props.setInterviewer(interviewer.id)}
       />
     );
   });
+  InterviewerList.propTypes = {
+    interviewers: PropTypes.array.isRequired,
+  };
 
-  return(
+  return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
       <ul className="interviewers__list">{parsedInterviewers}</ul>
     </section>
-  )
+  );
 }
