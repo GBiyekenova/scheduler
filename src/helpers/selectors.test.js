@@ -6,13 +6,13 @@ const state = {
       id: 1,
       name: "Monday",
       appointments: [1, 2, 3],
-      interviewers: ["Sylvia Palmer", "Tori Malcolm"]
+      interviewers: [1, 2]
     },
     {
       id: 2,
       name: "Tuesday",
       appointments: [4, 5],
-      interviewers: ["Tori Malcolm", "Sylvia Palmer"]
+      interviewers: [1, 2]
     }
   ],
   appointments: {
@@ -49,7 +49,7 @@ test("getAppointmentsForDay returns an array", () => {
   expect(Array.isArray(result)).toBe(true);
 });
 
-test.only("getAppointmentsForDay returns an array with a length matching the number of appointments for that day", () => {
+test("getAppointmentsForDay returns an array with a length matching the number of appointments for that day", () => {
   const result = getAppointmentsForDay(state, "Monday");
   expect(result.length).toEqual(3);
 });
