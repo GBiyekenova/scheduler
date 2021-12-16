@@ -2,10 +2,6 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 export default function useApplicationData() {
-  /*The state object will maintain the same structure.
-  The setDay action can be used to set the current day.
-  The bookInterview action makes an HTTP request and updates the local state.
-  The cancelInterview action makes an HTTP request and updates the local state.*/
 
   const [state, setState] = useState({
     day: "Monday",
@@ -32,13 +28,17 @@ export default function useApplicationData() {
     console.log("inside updated");
     console.log(daysArr);
     
-    for (let dayObj of daysArr) {
+    for (let i = 0; i < daysArr.length; i++) {
+      const dayObj = daysArr[i];
+
       if (day === dayObj.name) {
         console.log(dayObj.spots)
+        const newDayObj = {...dayObj, spots:dayObj.spots + spotIncrement}
         //console.log({spotIncrement})
-        dayObj.spots = dayObj.spots + spotIncrement // add the -1 or +1 to the current day.spots (based on adding or removing an interview)
+        //dayObj.spots = dayObj.spots + spotIncrement // add the -1 or +1 to the current day.spots (based on adding or removing an interview)
 
         console.log(dayObj.spots)
+        daysArr[i] = newDayObj;
         //dayObjUpdated = dayObj
       }
     }
